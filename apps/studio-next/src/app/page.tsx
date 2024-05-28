@@ -13,8 +13,8 @@ export const metadata: Metadata = {
     images: [
       {
         url: ogImage.src,
-        width: 800,
-        height: 600,
+        width: ogImage.width,
+        height: ogImage.height,
         alt: 'AsyncAPI default image',
       },
     ]
