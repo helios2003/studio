@@ -3,7 +3,7 @@ import dynamic from 'next/dynamic';
 import parseURL from '@/helpers/parser';
 import ogImage from '@/img/meta-studio-og-image.jpeg';
 import { DocumentInfo } from '@/types';
-const StudioWrapper = dynamic(() => import('@/components/StudioWrapper'), {ssr: false})
+const StudioWrapper = dynamic(() => import('@/components/StudioWrapper'), {ssr: false});
 
 type Props = {
   searchParams: { [key: string]: string | undefined }

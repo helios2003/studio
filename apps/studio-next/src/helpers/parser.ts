@@ -5,10 +5,6 @@ export default async function parseURL(base64Document: string): Promise<Document
     const parser = new Parser();
     const decodedDocument = Buffer.from(base64Document, "base64").toString("utf-8")
     
-    let validate = parser.validate(decodedDocument);
-    if (!validate) {
-        throw new Error("Invalid AsyncAPI document");
-    }
     const { document } = await parser.parse(decodedDocument);
 
     let title = document?.info().title();
