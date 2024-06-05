@@ -3,33 +3,49 @@ import { DocumentInfo } from '@/types';
 
 export default async function parseURL(base64Document: string): Promise<DocumentInfo> {
     const parser = new Parser();
-    const decodedDocument = Buffer.from(base64Document, "base64").toString("utf-8")
+    const decodedDocument = Buffer.from(base64Document, "base64").toString("utf-8");
     
     const { document } = await parser.parse(decodedDocument);
 
-    let title = document?.info().title();
-    if (title !== undefined) {
-        title = title.length <= 20 ? title : title.slice(0, 20) + "...";
-    }
-    const version = document?.info().version();
+    const extractInfo = async () => {
+        const info = document?.info();
+        
+        let title = info?.title();
+        if (title) {
+            title = title.length <= 20 ? title : title.slice(0, 20) + "...";
+        }
+        
+        const version = info?.version();
+        
+        let description = info?.description();
+        if (description) {
+            description = description.length <= 100 ? description : description.slice(0, 100) + "...";
+        }
 
-    let description = document?.info().description();
-    if (description!== undefined) {
-        description = description.length <= 100 ? description : description.slice(0, 100) + "...";
-    }
+        return { title, version, description };
+    };
 
-    const servers = document?.allServers();
-    const channels = document?.allChannels();
-    
-    const numServers = servers?.length;
-    const numChannels = channels?.length;
+    async function extractServers() {
+        const servers = document?.allServers();
+        const numServers = servers ? Object.keys(servers).length : 0;
+        return numServers;
+    };
 
-    const response = {
-        title,
-        version,
-        description,
+    async function extractChannels() {
+        const channels = document?.allChannels();
+        const numChannels = channels ? Object.keys(channels).length : 0;
+        return numChannels;
+    };
+
+    const [info, numServers, numChannels] = await Promise.all([
+        extractInfo(),
+        extractServers(),
+        extractChannels()
+    ]);
+
+    return {
+        ...info,
         numServers,
         numChannels
     };
-    return response;
 }
