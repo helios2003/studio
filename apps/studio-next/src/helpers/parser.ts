@@ -8,12 +8,12 @@ export default async function parseURL(base64Document: string): Promise<Document
     if (base64Document.length >= 300) {
         decodedDocument = Buffer.from(base64Document.substring(0, 300), "base64").toString("utf-8");
     }
-    decodedDocument = Buffer.from(base64Document.substring(0, 300), "base64").toString("utf-8");
+    decodedDocument = Buffer.from(base64Document, "base64").toString("utf-8");
     const { document, diagnostics } = await parser.parse(decodedDocument);
-
-    if (diagnostics) {
-        throw new Error('Document is not a valid AsyncAPI document');
-    }
+    console.log(document);
+    // if (diagnostics) {
+    //     throw new Error('Document is not a valid AsyncAPI document');
+    // }
 
     let title = document?.info().title();
     if (title !== undefined) {
