@@ -3,17 +3,13 @@ import { DocumentInfo } from '@/types';
 
 export default async function parseURL(base64Document: string): Promise<DocumentInfo> {
     const parser = new Parser();
-    let decodedDocument = '';
-
-    if (base64Document.length >= 300) {
-        decodedDocument = Buffer.from(base64Document.substring(0, 300), "base64").toString("utf-8");
-    }
-    decodedDocument = Buffer.from(base64Document, "base64").toString("utf-8");
+    
+    const decodedDocument = Buffer.from(base64Document, "base64").toString("utf-8");
     const { document, diagnostics } = await parser.parse(decodedDocument);
-    console.log(document);
-    // if (diagnostics) {
-    //     throw new Error('Document is not a valid AsyncAPI document');
-    // }
+
+    if (diagnostics) {
+        throw new Error('Document is not a valid AsyncAPI document');
+    }
 
     let title = document?.info().title();
     if (title !== undefined) {
