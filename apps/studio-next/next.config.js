@@ -33,9 +33,9 @@ const nextConfig = {
         Buffer: ['buffer', 'Buffer'],
       })
     );
-
     return config
-  },
-}
+    },
+    output: 'standalone'
+};
 
 module.exports = nextConfig
