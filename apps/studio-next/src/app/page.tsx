@@ -33,6 +33,7 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
   if (base64Doc) {
     try {
       const ogInfo: DocumentInfo = await parseURL(base64Doc);
+      console.log(ogInfo);
       metadata = {
         ...metadata,
         openGraph: {
