@@ -57,9 +57,6 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
 }
 
 export default async function Home({ searchParams }: Props) {
-  if (!searchParams) {
-    return;
-  }
   const metadata = await generateMetadata({ searchParams });
   return (
     <>
