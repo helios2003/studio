@@ -76,6 +76,26 @@ export default async function Home({ searchParams }: Props) {
   const metadata = await generateMetadata({ searchParams });
   return (
     <>
+      <Head>
+        <meta name="description" content={metadata.openGraph?.description} />
+        <meta
+          property="og:title"
+          content={metadata.openGraph?.title?.toString()}
+        />
+        <meta
+          property="og:description"
+          content={metadata.openGraph?.description}
+        />
+        <meta property="og:url" content={metadata.openGraph?.url?.toString()} />
+        {/* <meta property="og:image" content={metadata.openGraph?.images?.[0]?.ur.toString()} />
+        <meta property="og:image:alt" content={metadata.openGraph?.images?.[0]?.alt} />
+        <meta name="twitter:title" content={metadata.twitter?.title} /> */}
+        <meta
+          name="twitter:description"
+          content={metadata.twitter?.description}
+        />
+        <meta name="twitter:site" content={metadata.twitter?.site} />
+      </Head>
       <StudioWrapper />
     </>
   );
