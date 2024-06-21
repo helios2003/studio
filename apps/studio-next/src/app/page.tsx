@@ -17,13 +17,13 @@ export async function generateMetadata({
 }: Props): Promise<Metadata> {
   const base64Doc = searchParams["base64"];
   let metadata: Metadata = {
-    metadataBase: new URL("https://studio-helios2003.netlify.app"),
+    metadataBase: new URL("https://studio-studio-next.vercel.app"),
     openGraph: {
       type: "website",
       title: "AsyncAPI Studio",
       description:
         "Studio for AsyncAPI specification, where you can validate, view preview documentation, and generate templates from AsyncAPI document.",
-      url: "https://studio-helios2003.netlify.app",
+      url: "https://studio-studio-next.vercel.app",
       images: [
         {
           url: ogImage.src,
@@ -38,7 +38,6 @@ export async function generateMetadata({
   if (base64Doc) {
     try {
       const ogInfo: DocumentInfo = await parseURL(base64Doc);
-      console.log(ogInfo);
       metadata = {
         ...metadata,
         openGraph: {
