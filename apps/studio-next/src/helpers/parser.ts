@@ -7,9 +7,9 @@ export default async function parseURL(base64Document: string): Promise<Document
     const decodedDocument = Buffer.from(base64Document, "base64").toString("utf-8");
     const { document, diagnostics } = await parser.parse(decodedDocument);
 
-    if (diagnostics.length !== 0) {
-        console.log(diagnostics);
-    }
+    // if (diagnostics.length !== 0) {
+    //     console.log(diagnostics);
+    // }
 
     let title = document?.info().title();
     if (title !== undefined) {
