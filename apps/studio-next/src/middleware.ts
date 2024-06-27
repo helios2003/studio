@@ -18,9 +18,7 @@ export async function middleware(request: NextRequest) {
       if (!encodedDocument) {
         return res;
       }
-      const info: DocumentInfo = await parseURL(encodedDocument);
-      const redirectService = `https://studio-crawler-redirect.vercel.app/api?title=${info.title}&description=${info.description}`;
-      return NextResponse.redirect(redirectService);
+      return NextResponse.redirect(new URL(`https://studio-crawler-redirect.vercel.app/api?base64=${encodedDocument}`, request.url));
     }
   }
   return res;
