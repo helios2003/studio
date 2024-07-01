@@ -17,7 +17,7 @@ export async function middleware(request: NextRequest) {
         return res;
       }
       //const redirectService = `https://studio-crawler-redirect.vercel.app/api?title=${info.title}&description=${info.description}`;
-      return NextResponse.rewrite(new URL(`/api/crawler/base64=${encodedDocument}`, request.url));
+      return NextResponse.rewrite(new URL(`/api/crawler?base64=${encodedDocument}`, request.url));
     }
   }
   return res;
