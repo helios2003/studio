@@ -9,10 +9,7 @@ export async function GET(request: NextRequest) {
     if (!searchParams) return new NextResponse(null, { status: 200 });
     const info: DocumentInfo = await parseURL(searchParams);
 
-    const ogImageurl = `https://ogp-studio.vercel.app/api/og?title=${info.title}&description=${info.description}&numServers=${info.numServers}&numChannels=${info.numChannels}`;
-    const ogImage = await fetch(ogImageurl);
-    const ogImageBuffer = await ogImage.arrayBuffer();
-    const ogImageBase64 = Buffer.from(ogImageBuffer).toString('base64');
+    const ogImageurl = `https://ogp-studio.vercel.app/api/og?title=${encodeURIComponent(info.title!)}&description=${encodeURIComponent(info.description!)}&numServers=${info.numServers}&numChannels=${info.numChannels}`;
 
     const crawlerInfo = `
       <!DOCTYPE html>
@@ -24,7 +21,7 @@ export async function GET(request: NextRequest) {
         <title>${info.title}</title>
         ${info.title ? `<meta property="og:title" content="${info.title}" />` : ''}
         ${info.description ? `<meta property="og:description" content="${info.description}" />` : ''}
-        <meta property="og:image" content="data:image/png;base64,${ogImageBase64}" />
+        <meta property="og:image" content=${ogImageurl} />
       </head>
       </html>
     `;
