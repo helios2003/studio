@@ -4,7 +4,9 @@ import { DocumentInfo } from "@/types";
 
 export async function GET(request: NextRequest) {
   try {
-    const info: DocumentInfo = await parseURL(request.url);
+    const searchParams = request.nextUrl.searchParams.get('base64');
+    if (!searchParams) return new NextResponse(null, { status: 200 });
+    const info: DocumentInfo = await parseURL(searchParams);
     const crawlerInfo = `
       <!DOCTYPE html>
       <html lang="en">

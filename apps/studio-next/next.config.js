@@ -39,13 +39,9 @@ const nextConfig = {
   async rewrites() {
     return [
       {
-        source: '/',
-        destination: '/api/crawler',
+        source: '/:base64',
+        destination: '/api/crawler/:base64',
         has: [
-          {
-            type: "query",
-            key: "base64",
-          },
           {
             type: "header",
             key: "User-Agent",
