@@ -17,9 +17,7 @@ export async function GET(request: NextRequest) {
         <title>${info.title}</title>
         ${info.title ? `<meta property="og:title" content="${info.title}" />` : ''}
         ${info.description ? `<meta property="og:description" content="${info.description}" />` : ''}
-        <meta property="og:image" content="https://ogp-studio.vercel.app/api/og?title=${info.title}&description=${info.description}&numServers=${info.numServers}&numChannels=${info.numChannels}" />
       </head>
-      <body></body>
       </html>
     `;
 
@@ -29,7 +27,7 @@ export async function GET(request: NextRequest) {
         'Content-Type': 'text/html',
       },
     });
-  } catch(err) {
+  } catch (err) {
     console.error('Error parsing URL:', err);
     return new NextResponse("Not a valid URL", { status: 500 });
   }
