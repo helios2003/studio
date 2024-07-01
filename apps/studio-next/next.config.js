@@ -36,6 +36,24 @@ const nextConfig = {
 
     return config
   },
-}
-
-module.exports = nextConfig
+  async rewrites() {
+    return [
+      {
+        source: '/',
+        destination: '/api/crawler',
+        has: [
+          {
+            type: "query",
+            key: "base64",
+          },
+          {
+            type: "header",
+            key: "User-Agent",
+            value: "(redditbot|facebookexternalhit|Slackbot|Twitterbot|whatsapp)"
+          },
+        ],
+      },
+    ];
+  },
+};
+module.exports = nextConfig;
