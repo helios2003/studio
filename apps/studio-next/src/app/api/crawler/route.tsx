@@ -8,7 +8,21 @@ export async function GET(request: NextRequest) {
     if (!searchParams) return new NextResponse(null, { status: 200 });
     const info: DocumentInfo = await parseURL(searchParams);
 
-    const ogImageurl = `https://ogp-studio.netlify.app/api/og?title=${encodeURIComponent(info.title!)}&description=${encodeURIComponent(info.description!)}&numServers=${info.numServers}&numChannels=${info.numChannels}`;
+    let ogImageParams = new URLSearchParams();
+
+    if (info.title !== undefined) {
+      ogImageParams.append('title', encodeURIComponent(info.title));
+    }
+    if (info.description !== undefined) {
+      ogImageParams.append('description', encodeURIComponent(info.description));
+    }
+    if (info.numServers !== undefined) {
+      ogImageParams.append('numServers', info.numServers.toString());
+    }
+    if (info.numChannels !== undefined) {
+      ogImageParams.append('numChannels', info.numChannels.toString());
+    }
+    const ogImageurl = `https://ogp-studio.netlify.app/api/og?${ogImageParams.toString()}`;
 
     const crawlerInfo = `
       <!DOCTYPE html>
