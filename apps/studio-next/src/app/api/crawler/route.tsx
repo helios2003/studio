@@ -34,10 +34,10 @@ export async function GET(request: NextRequest) {
     let ogImageParams = new URLSearchParams();
 
     if (info.title !== undefined) {
-      ogImageParams.append('title', encodeURIComponent(info.title));
+      ogImageParams.append('title', info.title.toString());
     }
     if (info.description !== undefined) {
-      ogImageParams.append('description', encodeURIComponent(info.description));
+      ogImageParams.append('description', info.description.toString());
     }
     if (info.numServers !== undefined) {
       ogImageParams.append('numServers', info.numServers.toString());
