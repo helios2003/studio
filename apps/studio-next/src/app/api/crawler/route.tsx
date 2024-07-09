@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import parseURL from "@/helpers/parser";
 import { DocumentInfo } from "@/types";
+import ogImage from '@/img/meta-studio-og-image.jpeg';
 
 export async function GET(request: NextRequest) {
   try {
@@ -9,8 +10,27 @@ export async function GET(request: NextRequest) {
 
     const info: DocumentInfo | null = await parseURL(searchParams);
 
-    if (!info) return new NextResponse(null, { status: 200 });
-    
+    if (!info) {
+      const crawlerInfo = `
+       <!DOCTYPE html>
+       <html lang="en">
+       <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>"AsyncAPI Studio"</title>
+        <meta property="og:title" content="AsyncAPI Studio" />
+        <meta property="og:description" content="Studio for AsyncAPI specification, where you can validate, view preview documentation, and generate templates from AsyncAPI document." />
+        <meta property="og:url" content="https://studio-next.netlify.app" />
+        <meta property="og:image" content=${ogImage} />
+      `
+       return new NextResponse(crawlerInfo, {
+        headers: {
+          'Content-Type': 'text/html',
+        },
+      })
+    }
+
     let ogImageParams = new URLSearchParams();
 
     if (info.title !== undefined) {
