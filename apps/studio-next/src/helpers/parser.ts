@@ -1,15 +1,15 @@
 import { Parser } from '@asyncapi/parser';
 import { DocumentInfo } from '@/types';
 
-export default async function parseURL(base64Document: string): Promise<DocumentInfo> {
+export default async function parseURL(base64Document: string): Promise<DocumentInfo | null> {
     const parser = new Parser();
     
     const decodedDocument = Buffer.from(base64Document, "base64").toString("utf-8");
     const { document, diagnostics } = await parser.parse(decodedDocument);
 
-    // if (diagnostics.length !== 0) {
-    //     console.log(diagnostics);
-    // }
+    if (diagnostics.length !== 0) {
+        return null;
+    }
 
     let title = document?.info().title();
     if (title !== undefined) {

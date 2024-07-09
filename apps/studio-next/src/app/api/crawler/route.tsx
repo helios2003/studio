@@ -6,8 +6,11 @@ export async function GET(request: NextRequest) {
   try {
     const searchParams = request.nextUrl.searchParams.get('base64');
     if (!searchParams) return new NextResponse(null, { status: 200 });
-    const info: DocumentInfo = await parseURL(searchParams);
 
+    const info: DocumentInfo | null = await parseURL(searchParams);
+
+    if (!info) return new NextResponse(null, { status: 200 });
+    
     let ogImageParams = new URLSearchParams();
 
     if (info.title !== undefined) {
