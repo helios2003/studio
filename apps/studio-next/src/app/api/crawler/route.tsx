@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import parseURL from "@/helpers/parser";
 import { DocumentInfo } from "@/types";
-import fetch from "node-fetch";
 
 export async function GET(request: NextRequest) {
   try {
@@ -9,7 +8,7 @@ export async function GET(request: NextRequest) {
     if (!searchParams) return new NextResponse(null, { status: 200 });
     const info: DocumentInfo = await parseURL(searchParams);
 
-    const ogImageurl = `https://ogp-studio.vercel.app/api/og?title=${encodeURIComponent(info.title!)}&description=${encodeURIComponent(info.description!)}&numServers=${info.numServers}&numChannels=${info.numChannels}`;
+    const ogImageurl = `https://ogp-studio.netlify.app/api/og?title=${encodeURIComponent(info.title!)}&description=${encodeURIComponent(info.description!)}&numServers=${info.numServers}&numChannels=${info.numChannels}`;
 
     const crawlerInfo = `
       <!DOCTYPE html>
