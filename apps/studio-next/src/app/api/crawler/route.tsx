@@ -22,7 +22,7 @@ export async function GET(request: NextRequest) {
         <meta property="og:title" content="AsyncAPI Studio" />
         <meta property="og:description" content="Studio for AsyncAPI specification, where you can validate, view preview documentation, and generate templates from AsyncAPI document." />
         <meta property="og:url" content="https://studio-next.netlify.app" />
-        <meta property="og:image" content=${ogImage.src} />
+        <meta property="og:image" content="https://raw.githubusercontent.com/asyncapi/studio/master/apps/studio-next/public/img/meta-studio-og-image.jpeg" />
       `
        return new NextResponse(crawlerInfo, {
         headers: {
