@@ -1,6 +1,3 @@
-const crawlers = require('crawler-user-agents');
-
-const crawlerPattern = crawlers.map(crawler => crawler.pattern).join('|');
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   webpack: (
@@ -39,20 +36,6 @@ const nextConfig = {
 
     return config
   },
-  async rewrites() {
-    return [
-      {
-        source: '/:base64',
-        destination: '/api/crawler/:base64',
-        has: [
-          {
-            type: "header",
-            key: "User-Agent",
-            value: crawlerPattern
-          },
-        ],
-      },
-    ];
-  },
-};
-module.exports = nextConfig;
+}
+
+module.exports = nextConfig

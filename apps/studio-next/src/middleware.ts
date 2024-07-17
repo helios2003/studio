@@ -16,3 +16,7 @@ export async function middleware(request: NextRequest) {
   }
   return res;
 }
+
+export const config = {
+  matcher: ['/:base64'],
+}
