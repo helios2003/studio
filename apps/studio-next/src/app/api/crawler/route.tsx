@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import parseURL from "@/helpers/parser";
 import { DocumentInfo } from "@/types";
-import ogImage from '@/img/meta-studio-og-image.jpeg';
 
 export async function GET(request: NextRequest) {
   try {
@@ -33,18 +32,25 @@ export async function GET(request: NextRequest) {
 
     let ogImageParams = new URLSearchParams();
 
-    if (info.title !== undefined) {
+    if (info.title) {
       ogImageParams.append('title', info.title.toString());
     }
-    if (info.description !== undefined) {
+    if (info.description) {
       ogImageParams.append('description', info.description.toString());
     }
-    if (info.numServers !== undefined) {
+    if (info.numServers) {
       ogImageParams.append('numServers', info.numServers.toString());
     }
-    if (info.numChannels !== undefined) {
+    if (info.numChannels) {
       ogImageParams.append('numChannels', info.numChannels.toString());
     }
+    if (info.numOperations) {
+      ogImageParams.append('numOperations', info.numOperations.toString());
+    }
+    if (info.numMessages) {
+      ogImageParams.append('numMessages', info.numMessages.toString());
+    }
+
     const ogImageurl = `https://ogp-studio.netlify.app/api/og?${ogImageParams.toString()}`;
 
     const crawlerInfo = `

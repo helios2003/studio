@@ -7,5 +7,7 @@ export interface DocumentInfo  {
     version? : string,
     description? : string,
     numServers? : number,
-    numChannels? : number
+    numChannels? : number,
+    numOperations? : number,
+    numMessages?: number
 }
