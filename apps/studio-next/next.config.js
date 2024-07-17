@@ -1,3 +1,6 @@
+const crawlers = require('crawler-user-agents');
+
+const crawlerPattern = crawlers.map(crawler => crawler.pattern).join('|');
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   webpack: (
@@ -45,7 +48,7 @@ const nextConfig = {
           {
             type: "header",
             key: "User-Agent",
-            value: "(redditbot|facebookexternalhit|Slackbot|Twitterbot|whatsapp)"
+            value: crawlerPattern
           },
         ],
       },
