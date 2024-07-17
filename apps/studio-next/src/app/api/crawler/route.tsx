@@ -3,8 +3,8 @@ import parseURL from "@/helpers/parser";
 import { DocumentInfo } from "@/types";
 
 export async function GET(request: NextRequest) {
+  const searchParams = request.nextUrl.searchParams.get('base64');
   try {
-    const searchParams = request.nextUrl.searchParams.get('base64');
     if (!searchParams) return new NextResponse(null, { status: 200 });
 
     const info: DocumentInfo | null = await parseURL(searchParams);
