@@ -1,13 +1,8 @@
 import { NextRequest, NextResponse, userAgent } from "next/server";
+import crawlers from 'crawler-user-agents';
 
 export async function middleware(request: NextRequest) {
-  const userAgents = [
-    "redditbot",
-    "facebookexternalhit",
-    "Slackbot",
-    "Twitterbot",
-    "whatsapp",
-  ];
+  const userAgents = crawlers.map(crawler => crawler.pattern);
   const requestInfo = userAgent(request);
   const res = NextResponse.next();
   for (const ua of userAgents) {
@@ -23,5 +18,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-    matcher: ['/:base64'],
+  matcher: ['/:base64'],
 }
