@@ -1,13 +1,34 @@
 import { NextRequest, NextResponse } from "next/server";
 import parseURL from "@/helpers/parser";
 import { DocumentInfo } from "@/types";
+import axios from "axios";
+import { parse } from "path";
 
 export async function GET(request: NextRequest) {
-  const searchParams = request.nextUrl.searchParams.get('base64');
-  try {
-    if (!searchParams) return new NextResponse(null, { status: 200 });
+  const Base64searchParams = request.nextUrl.searchParams.get('base64');
+  const URLsearchParams = request.nextUrl.searchParams.get('url');
 
-    const info: DocumentInfo | null = await parseURL(searchParams);
+  try {
+    if (!Base64searchParams && !URLsearchParams) return new NextResponse(null, { status: 200 });
+    let info: DocumentInfo | null = null;
+
+    if (Base64searchParams) {
+      // directly run the parsing function
+      info = await parseURL(Base64searchParams);
+    }
+    if (URLsearchParams) {
+      // fetch the document information from the URL
+      try {
+          const response = await axios.get(URLsearchParams);
+          if (response.status === 200) {
+            info = await parseURL(response.data);
+          } else {
+            return new NextResponse("Not a valid URL", { status: 500 });
+          }
+      } catch (error) {
+        return new NextResponse("Not a valid URL", { status: 500 });
+      }
+    }
 
     if (!info) {
       const crawlerInfo = `
