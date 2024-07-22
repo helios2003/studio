@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import parseURL from "@/helpers/parser";
 import { DocumentInfo } from "@/types";
 import axios from "axios";
+import { parse } from "path";
 
 export async function GET(request: NextRequest) {
   const Base64searchParams = request.nextUrl.searchParams.get('base64');
@@ -16,11 +17,11 @@ export async function GET(request: NextRequest) {
       info = await parseURL(Base64searchParams);
     }
     if (URLsearchParams) {
-      // fetch the document
+      // fetch the document information from the URL
       try {
           const response = await axios.get(URLsearchParams);
           if (response.status === 200) {
-            info = response.data;
+            info = await parseURL(response.data);
           } else {
             return new NextResponse("Not a valid URL", { status: 500 });
           }

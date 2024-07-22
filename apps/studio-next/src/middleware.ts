@@ -5,11 +5,12 @@ export async function middleware(request: NextRequest) {
   const userAgents = crawlers.map(crawler => crawler.pattern);
   const requestInfo = userAgent(request);
   const res = NextResponse.next();
+  const documentURL = request.nextUrl.searchParams.get("url");
 
   for (const ua of userAgents) {
     if (requestInfo.ua.toLowerCase().includes(ua.toLowerCase())) {
       const encodedDocument = request.nextUrl.searchParams.get("base64");
-      const documentURL = request.nextUrl.searchParams.get("url");
+      
       if (!encodedDocument && !documentURL) {
         return res;
       }
