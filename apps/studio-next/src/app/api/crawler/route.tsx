@@ -6,7 +6,7 @@ import axios from "axios";
 export async function GET(request: NextRequest) {
   const Base64searchParams = request.nextUrl.searchParams.get('base64');
   const URLsearchParams = request.nextUrl.searchParams.get('url');
-  console.log(URLsearchParams);
+
   try {
     if (!Base64searchParams && !URLsearchParams) return new NextResponse(null, { status: 200 });
     let info: DocumentInfo | null = null;
@@ -20,8 +20,7 @@ export async function GET(request: NextRequest) {
       try {
           const response = await axios.get(URLsearchParams);
           if (response.status === 200) {
-            console.log(response.data);
-            info = await parseURL(response.data);
+            info = response.data;
           } else {
             return new NextResponse("Not a valid URL", { status: 500 });
           }
