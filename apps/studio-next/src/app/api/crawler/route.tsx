@@ -3,6 +3,7 @@ import parseURL from "@/helpers/parser";
 import { DocumentInfo } from "@/types";
 import axios from "axios";
 import { metadata } from "@/app/page";
+import ogImage from "@/img/meta-studio-og-image.jpeg"
 
 export async function GET(request: NextRequest) {
   const Base64searchParams = request.nextUrl.searchParams.get('base64');
