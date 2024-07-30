@@ -26,5 +26,8 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/:base64', '/:url'],
+  matcher: [
+    '/\\?base64=:base64',
+    '/\\?url=:url'
+  ]
 }
