@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import parseURL from "@/helpers/parser";
 import { DocumentInfo } from "@/types";
 import axios from "axios";
-import ogImage from '@/img/meta-studio-og-image.jpeg'
+import { metadata } from "@/app/page";  
 
 export async function GET(request: NextRequest) {
   const Base64searchParams = request.nextUrl.searchParams.get('base64');
@@ -31,9 +31,6 @@ export async function GET(request: NextRequest) {
     }
 
     if (!info) {
-      const websiteTitle = "AsyncAPI Studio";
-      const websiteDescription = "Studio for AsyncAPI specification, where you can validate, view preview documentation, and generate templates from AsyncAPI document.";
-      const websiteUrl = "https://studio-next.netlify.app";
       const ogImage = "https://raw.githubusercontent.com/asyncapi/studio/master/apps/studio-next/public/img/meta-studio-og-image.jpeg";
       
       const crawlerInfo = `
@@ -43,10 +40,10 @@ export async function GET(request: NextRequest) {
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>"${websiteTitle}"</title>
-        <meta property="og:title" content="${websiteTitle}" />
-        <meta property="og:description" content="${websiteDescription}" />
-        <meta property="og:url" content="${websiteUrl}" />
+        <title>"${metadata.openGraph?.title}"</title>
+        <meta property="og:title" content="${metadata.openGraph?.title}" />
+        <meta property="og:description" content="${metadata.openGraph?.description}" />
+        <meta property="og:url" content="${metadata.openGraph?.url}" />
         <meta property="og:image" content="${ogImage}" />
       `
        return new NextResponse(crawlerInfo, {
