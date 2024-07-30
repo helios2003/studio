@@ -3,7 +3,6 @@ import parseURL from "@/helpers/parser";
 import { DocumentInfo } from "@/types";
 import axios from "axios";
 import { metadata } from "@/app/page";
-import ogImage from "@/img/meta-studio-og-image.jpeg"
 
 export async function GET(request: NextRequest) {
   const Base64searchParams = request.nextUrl.searchParams.get('base64');
@@ -32,9 +31,6 @@ export async function GET(request: NextRequest) {
     }
 
     if (!info) {
-      const websiteTitle = "AsyncAPI Studio";
-      const websiteDescription = "Studio for AsyncAPI specification, where you can validate, view preview documentation, and generate templates from AsyncAPI document.";
-      const websiteUrl = "https://studio-next.netlify.app";
       const ogImage = "https://raw.githubusercontent.com/asyncapi/studio/master/apps/studio-next/public/img/meta-studio-og-image.jpeg";
 
       const crawlerInfo = `

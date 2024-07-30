@@ -2,13 +2,19 @@ import { NextRequest, NextResponse, userAgent } from "next/server";
 import crawlers from 'crawler-user-agents';
 
 export async function middleware(request: NextRequest) {
+
+  const searchParams = request.nextUrl.searchParams;
+  if (!searchParams.get("base64") &&!searchParams.get("url")) {
+    return NextResponse.next();
+  }
+
   const userAgents = crawlers.map(crawler => crawler.pattern);
   const requestInfo = userAgent(request);
   const res = NextResponse.next();
-  const documentURL = request.nextUrl.searchParams.get("url");
-
+  
   for (const ua of userAgents) {
     if (requestInfo.ua.toLowerCase().includes(ua.toLowerCase())) {
+      const documentURL = request.nextUrl.searchParams.get("url");
       const encodedDocument = request.nextUrl.searchParams.get("base64");
       
       if (!encodedDocument && !documentURL) {
@@ -25,9 +31,3 @@ export async function middleware(request: NextRequest) {
   return res;
 }
 
-export const config = {
-  matcher: [
-    '/\\?base64=:base64',
-    '/\\?url=:url'
-  ]
-}
