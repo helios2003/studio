@@ -31,6 +31,11 @@ export async function GET(request: NextRequest) {
     }
 
     if (!info) {
+      const websiteTitle = "AsyncAPI Studio";
+      const websiteDescription = "Studio for AsyncAPI specification, where you can validate, view preview documentation, and generate templates from AsyncAPI document.";
+      const websiteUrl = "https://studio-next.netlify.app";
+      const ogImage = "https://raw.githubusercontent.com/asyncapi/studio/master/apps/studio-next/public/img/meta-studio-og-image.jpeg";
+
       const crawlerInfo = `
        <!DOCTYPE html>
        <html lang="en">
@@ -38,11 +43,11 @@ export async function GET(request: NextRequest) {
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>"AsyncAPI Studio"</title>
-        <meta property="og:title" content="AsyncAPI Studio" />
-        <meta property="og:description" content="Studio for AsyncAPI specification, where you can validate, view preview documentation, and generate templates from AsyncAPI document." />
-        <meta property="og:url" content="https://studio-next.netlify.app" />
-        <meta property="og:image" content="https://raw.githubusercontent.com/asyncapi/studio/master/apps/studio-next/public/img/meta-studio-og-image.jpeg" />
+        <title>"${websiteTitle}"</title>
+        <meta property="og:title" content="${websiteTitle}" />
+        <meta property="og:description" content="${websiteDescription}" />
+        <meta property="og:url" content="${websiteUrl}" />
+        <meta property="og:image" content="${ogImage}" />
       `
        return new NextResponse(crawlerInfo, {
         headers: {
