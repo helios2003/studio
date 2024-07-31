@@ -3,8 +3,9 @@ import crawlers from 'crawler-user-agents';
 
 export async function middleware(request: NextRequest) {
 
-  const searchParams = request.nextUrl.searchParams;
-  if (!searchParams.get("base64") &&!searchParams.get("url")) {
+  const searchParams = request.nextUrl.search.split("?")[1];
+
+  if (!searchParams.startsWith("base64") &&!searchParams.startsWith("url")) {
     return NextResponse.next();
   }
 
