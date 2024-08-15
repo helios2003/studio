@@ -1,4 +1,4 @@
-import { createServices } from '../';
+import { createServices } from '..';
 
 import type { NavigationService } from '../navigation.service';
 
