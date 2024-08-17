@@ -176,8 +176,8 @@ importers:
         specifier: ^3.0.22
         version: 3.0.22
       '@asyncapi/parser':
-        specifier: ^3.2.1
-        version: 3.2.1
+        specifier: ^3.2.2
+        version: 3.2.2
       '@asyncapi/protobuf-schema-parser':
         specifier: ^3.2.11
         version: 3.2.12
@@ -405,8 +405,8 @@ importers:
         specifier: ^3.0.18
         version: 3.0.22
       '@asyncapi/parser':
-        specifier: ^3.2.1
-        version: 3.2.1
+        specifier: ^3.2.2
+        version: 3.2.2
       '@asyncapi/protobuf-schema-parser':
         specifier: ^3.2.8
         version: 3.2.12
@@ -478,7 +478,7 @@ importers:
         version: 4.0.2(monaco-editor@0.34.1)
       next:
         specifier: 14.2.3
-        version: 14.2.3(@babel/core@7.12.9)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+        version: 14.2.3(@babel/core@7.24.5)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       postcss:
         specifier: 8.4.31
         version: 8.4.31
@@ -836,8 +836,8 @@ packages:
   '@asyncapi/parser@3.0.0-next-major-spec.8':
     resolution: {integrity: sha512-d8ebYM08BCsx3Q4AeLke6naU/NrcAXFEVpS6b3EWcKRdUDce+v0X5k9aDH+YXWCaQApEF28UzcxhlSOJvhIFgQ==}
 
-  '@asyncapi/parser@3.2.1':
-    resolution: {integrity: sha512-Qws9XZdKigSYH5O+kn3uNDs77x7LM9tIocVRinhWIBsdR8H0c8zSJZ08IiC+E1X3PYluV2sk6FqCJUFxSy75vA==}
+  '@asyncapi/parser@3.2.2':
+    resolution: {integrity: sha512-ved4ja3ANs6BcRhWLbK/A7JIhJyMQBYdV1GZwo6Ptf+qBkGIdvV3dt8M4T6TZqtIbUI2NOvmO2YUqtaPWTudgA==}
 
   '@asyncapi/protobuf-schema-parser@3.2.12':
     resolution: {integrity: sha512-ROMx71sdfeAvpRoRWkjKXxP6Cu6xNE2P/b7Nl3jiXcPUNhlwUu2m5ScV00v4C2d/So6jNrxnUzXeg1Q3f20EZw==}
@@ -10803,7 +10803,7 @@ snapshots:
 
   '@asyncapi/avro-schema-parser@3.0.22':
     dependencies:
-      '@asyncapi/parser': 3.2.1
+      '@asyncapi/parser': 3.2.2
       '@types/json-schema': 7.0.15
       avsc: 5.7.7
     transitivePeerDependencies:
@@ -10811,7 +10811,7 @@ snapshots:
 
   '@asyncapi/converter@1.4.19':
     dependencies:
-      '@asyncapi/parser': 3.2.1
+      '@asyncapi/parser': 3.2.2
       js-yaml: 3.14.1
     transitivePeerDependencies:
       - encoding
@@ -10856,7 +10856,7 @@ snapshots:
 
   '@asyncapi/generator-react-sdk@1.0.18(@types/babel__core@7.20.5)':
     dependencies:
-      '@asyncapi/parser': 3.2.1
+      '@asyncapi/parser': 3.2.2
       '@babel/core': 7.12.9
       '@babel/preset-env': 7.24.5(@babel/core@7.12.9)
       '@babel/preset-react': 7.24.1(@babel/core@7.12.9)
@@ -10887,7 +10887,7 @@ snapshots:
   '@asyncapi/html-template@2.3.5(@types/babel__core@7.20.5)(react@18.2.0)':
     dependencies:
       '@asyncapi/generator-react-sdk': 1.0.18(@types/babel__core@7.20.5)
-      '@asyncapi/parser': 3.2.1
+      '@asyncapi/parser': 3.2.2
       '@asyncapi/react-component': 1.4.10(react-dom@17.0.2(react@18.2.0))(react@18.2.0)
       highlight.js: 10.7.3
       puppeteer: 14.4.1
@@ -10962,7 +10962,7 @@ snapshots:
     dependencies:
       '@apidevtools/json-schema-ref-parser': 11.6.1
       '@apidevtools/swagger-parser': 10.1.0(openapi-types@9.3.0)
-      '@asyncapi/parser': 3.2.1
+      '@asyncapi/parser': 3.2.2
       '@smoya/multi-parser': 5.0.7
       '@swc/core': 1.5.7(@swc/helpers@0.5.5)
       '@swc/jest': 0.2.36(@swc/core@1.5.7(@swc/helpers@0.5.5))
@@ -11016,7 +11016,7 @@ snapshots:
 
   '@asyncapi/openapi-schema-parser@3.0.22':
     dependencies:
-      '@asyncapi/parser': 3.2.1
+      '@asyncapi/parser': 3.2.2
       '@openapi-contrib/openapi-schema-to-json-schema': 3.2.0
       ajv: 8.13.0
       ajv-errors: 3.0.0(ajv@8.13.0)
@@ -11084,7 +11084,7 @@ snapshots:
     transitivePeerDependencies:
       - encoding
 
-  '@asyncapi/parser@3.2.1':
+  '@asyncapi/parser@3.2.2':
     dependencies:
       '@asyncapi/specs': 6.7.1
       '@openapi-contrib/openapi-schema-to-json-schema': 3.2.0
@@ -11110,7 +11110,7 @@ snapshots:
 
   '@asyncapi/protobuf-schema-parser@3.2.12':
     dependencies:
-      '@asyncapi/parser': 3.2.1
+      '@asyncapi/parser': 3.2.2
       '@types/protocol-buffers-schema': 3.4.3
       protobufjs: 7.3.0
     transitivePeerDependencies:
@@ -11124,7 +11124,7 @@ snapshots:
 
   '@asyncapi/raml-dt-schema-parser@4.0.22':
     dependencies:
-      '@asyncapi/parser': 3.2.1
+      '@asyncapi/parser': 3.2.2
       js-yaml: 4.1.0
       ramldt2jsonschema: 1.2.3
       webapi-parser: 0.5.0
@@ -11135,7 +11135,7 @@ snapshots:
     dependencies:
       '@asyncapi/avro-schema-parser': 3.0.22
       '@asyncapi/openapi-schema-parser': 3.0.22
-      '@asyncapi/parser': 3.2.1
+      '@asyncapi/parser': 3.2.2
       '@asyncapi/protobuf-schema-parser': 3.2.12
       highlight.js: 10.7.3
       isomorphic-dompurify: 0.13.0
@@ -11155,7 +11155,7 @@ snapshots:
     dependencies:
       '@asyncapi/avro-schema-parser': 3.0.22
       '@asyncapi/openapi-schema-parser': 3.0.22
-      '@asyncapi/parser': 3.2.1
+      '@asyncapi/parser': 3.2.2
       '@asyncapi/protobuf-schema-parser': 3.2.12
       highlight.js: 10.7.3
       isomorphic-dompurify: 0.13.0
@@ -14423,7 +14423,7 @@ snapshots:
       '@asyncapi/raml-dt-schema-parser': 4.0.22
       parserapiv1: '@asyncapi/parser@2.1.2'
       parserapiv2: '@asyncapi/parser@3.0.0-next-major-spec.8'
-      parserapiv3: '@asyncapi/parser@3.2.1'
+      parserapiv3: '@asyncapi/parser@3.2.2'
     transitivePeerDependencies:
       - encoding
 
@@ -21080,7 +21080,7 @@ snapshots:
 
   neo-async@2.6.2: {}
 
-  next@14.2.3(@babel/core@7.12.9)(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
+  next@14.2.3(@babel/core@7.24.5)(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
     dependencies:
       '@next/env': 14.2.3
       '@swc/helpers': 0.5.5
@@ -21090,7 +21090,7 @@ snapshots:
       postcss: 8.4.31
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
-      styled-jsx: 5.1.1(@babel/core@7.12.9)(react@18.2.0)
+      styled-jsx: 5.1.1(@babel/core@7.24.5)(react@18.2.0)
     optionalDependencies:
       '@next/swc-darwin-arm64': 14.2.3
       '@next/swc-darwin-x64': 14.2.3
@@ -23294,12 +23294,12 @@ snapshots:
 
   style-mod@4.1.2: {}
 
-  styled-jsx@5.1.1(@babel/core@7.12.9)(react@18.2.0):
+  styled-jsx@5.1.1(@babel/core@7.24.5)(react@18.2.0):
     dependencies:
       client-only: 0.0.1
       react: 18.2.0
     optionalDependencies:
-      '@babel/core': 7.12.9
+      '@babel/core': 7.24.5
 
   stylehacks@5.1.1(postcss@8.4.31):
     dependencies:
