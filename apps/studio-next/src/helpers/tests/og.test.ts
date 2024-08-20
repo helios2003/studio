@@ -13,7 +13,9 @@ const accountServiceTags = {
     "og:image": 'https://ogp-studio.netlify.app/og?title=Account+Service&description=This+service+is+in+charge+of+processing+user+signups&numChannels=1&numOperations=1&numMessages=1'
 }
 
-describe('Testing the document with base64 query parameter for various open graph crawlers ', () => {
+describe('Testing the document with base64 query parameter for various open graph crawlers', () => {
+    jest.setTimeout(30000);
+    
     test('Test Open Graph tags for Facebook', async () => {
         const openGraphTags = await fetchOpenGraphTags(base64url, facebookCrawler);
         expect(openGraphTags).toEqual(accountServiceTags);
@@ -39,6 +41,8 @@ const mercurHubTags = {
 }
 
 describe('Testing the document with url query parameter for various open graph crawlers', () => {
+    jest.setTimeout(30000);
+    
     test('Test Open Graph tags for Facebook', async () => {
         const facebookCrawler = 'facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php)';
         const openGraphTags = await fetchOpenGraphTags(externalDocUrl, facebookCrawler);
