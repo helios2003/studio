@@ -24,6 +24,6 @@
     },
     "baseUrl": "."
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/helpers/tests/**/*.ts"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/services/tests/**/*.ts", "src/helpers/tests/**/*.ts"],
   "exclude": ["node_modules"]
 }

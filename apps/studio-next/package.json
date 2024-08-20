@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "echo 'No linting configured'",
-    "test": "jest"
+    "test": "jest --detectOpenHandles"
   },
   "dependencies": {
     "@asyncapi/avro-schema-parser": "^3.0.19",
