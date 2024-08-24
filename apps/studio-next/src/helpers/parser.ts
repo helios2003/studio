@@ -1,5 +1,6 @@
 import { Input, Parser } from '@asyncapi/parser';
 import { DocumentInfo } from '@/types';
+import { escape } from 'querystring';
 
 function cleanTheDocument(input: string): string {
     // use standard line breaks and remove all non-printable characters
@@ -21,7 +22,7 @@ export default async function parseURL(asyncapiDocument: string): Promise<Docume
     if (asyncapiDocument.startsWith('https') || asyncapiDocument.startsWith('http')) {
         decodedDocument = asyncapiDocument;
     } else {
-        decodedDocument  = Buffer.from(asyncapiDocument, "base64").toString("utf-8");
+        decodedDocument  = decodeURIComponent(escape(atob(asyncapiDocument)));
         console.log(decodedDocument);
     }
     decodedDocument = cleanTheDocument(decodedDocument);
