@@ -21,11 +21,12 @@ export default async function parseURL(asyncapiDocument: string): Promise<Docume
     if (asyncapiDocument.startsWith('https') || asyncapiDocument.startsWith('http')) {
         decodedDocument = asyncapiDocument;
     } else {
+        asyncapiDocument.replace(/\s/g, '');
         decodedDocument = atob(asyncapiDocument);
         console.log(decodedDocument);
     }
     decodedDocument = cleanTheDocument(decodedDocument);
-    const { document, diagnostics } = await parser.parse(JSON.stringify(decodedDocument));
+    const { document, diagnostics } = await parser.parse(decodedDocument);
     console.log("Diagnostics are: ", diagnostics);
     if (diagnostics.length) {
         return null;
