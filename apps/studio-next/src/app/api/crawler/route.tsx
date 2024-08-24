@@ -98,6 +98,7 @@ export async function GET(request: NextRequest) {
       },
     });
   } catch (err) {
+    console.log(err);
     return new NextResponse("Not a valid URL", { status: 500 });
   }
 }

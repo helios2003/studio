@@ -27,7 +27,7 @@ export default async function parseURL(asyncapiDocument: string): Promise<Docume
     decodedDocument = cleanTheDocument(decodedDocument);
     const { document, diagnostics } = await parser.parse(decodedDocument);
     console.log("Diagnostics are: ", diagnostics);
-    if (diagnostics.some(diagnostic => diagnostic.severity != 0)) {
+    if (diagnostics.length) {
         return null;
     }
 
