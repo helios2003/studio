@@ -1,6 +1,18 @@
 import { Input, Parser } from '@asyncapi/parser';
 import { DocumentInfo } from '@/types';
 
+function cleanTheDocument(input: string): string {
+    // use standard line breaks and remove all non-printable characters
+    let cleanedDocument = input.replace(/\r\n|\r|\n/g, '\n');
+    cleanedDocument = cleanedDocument.replace(/[^\x20-\x7E\n]/g, '');
+    
+    if (!cleanedDocument.endsWith('\n')) {
+        cleanedDocument += '\n';
+    }
+    
+    return cleanedDocument;
+}
+
 export default async function parseURL(asyncapiDocument: string): Promise<DocumentInfo | null> {
     const parser = new Parser();
 
@@ -12,7 +24,7 @@ export default async function parseURL(asyncapiDocument: string): Promise<Docume
         decodedDocument = atob(asyncapiDocument);
         console.log(decodedDocument);
     }
-
+    decodedDocument = cleanTheDocument(decodedDocument);
     const { document, diagnostics } = await parser.parse(decodedDocument);
     console.log("Diagnostics are: ", diagnostics);
     if (diagnostics.some(diagnostic => diagnostic.severity != 0)) {
