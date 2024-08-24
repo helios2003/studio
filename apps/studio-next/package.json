@@ -31,7 +31,7 @@
     "codemirror": "^6.0.1",
     "crawler-user-agents": "^1.0.142",
     "eslint-config-next": "13.4.12",
-    "js-base64": "^3.7.3",
+    "js-base64": "^3.7.7",
     "js-file-download": "^0.4.12",
     "js-yaml": "^4.1.0",
     "monaco-editor": "0.34.1",
