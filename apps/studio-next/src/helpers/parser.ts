@@ -10,10 +10,11 @@ export default async function parseURL(asyncapiDocument: string): Promise<Docume
         decodedDocument = asyncapiDocument;
     } else {
         decodedDocument  = Buffer.from(asyncapiDocument, "base64").toString("utf-8");
+        console.log(decodedDocument);
     }
 
     const { document, diagnostics } = await parser.parse(decodedDocument);
-    console.log(document);
+    console.log("Diagnostics are: ", diagnostics);
     if (diagnostics.some(diagnostic => diagnostic.severity != 0)) {
         return null;
     }
