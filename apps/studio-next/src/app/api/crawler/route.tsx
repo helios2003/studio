@@ -7,7 +7,8 @@ import { metadata } from "@/app/page";
 export async function GET(request: NextRequest) {
   const Base64searchParams = request.nextUrl.searchParams.get('base64');
   const URLsearchParams = request.nextUrl.searchParams.get('url');
-
+  console.log('Base64searchParams:', Base64searchParams);
+  console.log('URLsearchParams:', URLsearchParams);
   try {
     if (!Base64searchParams && !URLsearchParams) return new NextResponse(null, { status: 200 });
     let info: DocumentInfo | null = null;
@@ -90,7 +91,7 @@ export async function GET(request: NextRequest) {
       </head>
       </html>
     `;
-
+    console.log(crawlerInfo);
     return new NextResponse(crawlerInfo, {
       status: 200,
       headers: {
