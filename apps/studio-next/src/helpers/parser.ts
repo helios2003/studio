@@ -13,7 +13,7 @@ export default async function parseURL(asyncapiDocument: string): Promise<Docume
     }
 
     const { document, diagnostics } = await parser.parse(decodedDocument);
-    console.log(document);
+
     if (diagnostics.some(diagnostic => diagnostic.severity != 0)) {
         return null;
     }

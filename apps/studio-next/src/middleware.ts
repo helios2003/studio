@@ -6,8 +6,8 @@ export async function middleware(request: NextRequest) {
   const requestInfo = userAgent(request);
   const res = NextResponse.next();
 
-  // for (const ua of userAgents) {
-  //   if (requestInfo.ua.toLowerCase().includes(ua.toLowerCase())) {
+  for (const ua of userAgents) {
+    if (requestInfo.ua.toLowerCase().includes(ua.toLowerCase())) {
 
       const documentURL = request.nextUrl.searchParams.get("url");
       const encodedDocument = request.nextUrl.searchParams.get("base64");
@@ -16,12 +16,12 @@ export async function middleware(request: NextRequest) {
         return res;
       }
       if (encodedDocument) {
-        return NextResponse.rewrite(new URL(`/api/crawler?base64=${encodedDocument}`, request.url));
+        return NextResponse.rewrite(new URL(`/api/crawler?base64=${encodeURIComponent(encodedDocument)}`, request.url));
       }
       if (documentURL) {
-        return NextResponse.rewrite(new URL(`/api/crawler?url=${documentURL}`, request.url));
+        return NextResponse.rewrite(new URL(`/api/crawler?url=${encodeURIComponent(documentURL)}`, request.url));
       }
-  //   }
-  // }
+    }
+  }
   return res;
 }
