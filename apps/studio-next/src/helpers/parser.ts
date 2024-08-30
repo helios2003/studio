@@ -18,6 +18,7 @@ export default async function parseURL(asyncapiDocument: string): Promise<Docume
     if (asyncapiDocument.startsWith('https') || asyncapiDocument.startsWith('http')) {
         decodedDocument = asyncapiDocument;
     } else {
+        console.log(asyncapiDocument)
         decodedDocument  = cleanTheDocument(asyncapiDocument);
         console.log(decodedDocument);
     }
