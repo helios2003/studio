@@ -1,15 +1,11 @@
 import { Input, Parser } from '@asyncapi/parser';
 import { DocumentInfo } from '@/types';
-import { decode } from 'js-base64';
 
 function cleanTheDocument(input: string): string {
-    // use standard line breaks and remove all non-printable characters
-    let cleanedDocument = input.replace(/\r\n|\r|\n/g, '\n');
-    cleanedDocument = cleanedDocument.replace(/[^\x20-\x7E\n]/g, '');
-    
-    if (!cleanedDocument.endsWith('\n')) {
-        cleanedDocument += '\n';
-    }
+
+    const docDecoded = decodeURIComponent(input);
+    const buff = Buffer.from(docDecoded, 'base64');
+    const cleanedDocument = buff.toString('utf8');
     
     return cleanedDocument;
 }
@@ -22,10 +18,10 @@ export default async function parseURL(asyncapiDocument: string): Promise<Docume
     if (asyncapiDocument.startsWith('https') || asyncapiDocument.startsWith('http')) {
         decodedDocument = asyncapiDocument;
     } else {
-        decodedDocument  = decode(asyncapiDocument);
+        decodedDocument  = cleanTheDocument(asyncapiDocument);
         console.log(decodedDocument);
     }
-    decodedDocument = cleanTheDocument(decodedDocument);
+
     const { document, diagnostics } = await parser.parse(decodedDocument);
     console.log("Diagnostics are: ", diagnostics);
     if (diagnostics.length) {
