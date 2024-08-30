@@ -16,10 +16,10 @@ export async function middleware(request: NextRequest) {
         return res;
       }
       if (encodedDocument) {
-        return NextResponse.rewrite(new URL(`/api/crawler?base64=${encodedDocument}`, request.url));
+        return NextResponse.rewrite(new URL(`/api/crawler?base64=${encodeURIComponent(encodedDocument)}`, request.url));
       }
       if (documentURL) {
-        return NextResponse.rewrite(new URL(`/api/crawler?url=${documentURL}`, request.url));
+        return NextResponse.rewrite(new URL(`/api/crawler?url=${encodeURIComponent(documentURL)}`, request.url));
       }
   //   }
   // }
