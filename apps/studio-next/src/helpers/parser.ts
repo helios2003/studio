@@ -4,12 +4,14 @@ import { DocumentInfo } from '@/types';
 export default async function parseURL(asyncapiDocument: string): Promise<DocumentInfo | null> {
     const parser = new Parser();
 
+    const base64Regex = /^([0-9a-zA-Z+/]{4})*(([0-9a-zA-Z+/]{2}==)|([0-9a-zA-Z+/]{3}=))?$/;
+
     let decodedDocument: Input = "";
 
-    if (asyncapiDocument.startsWith('https') || asyncapiDocument.startsWith('http')) {
-        decodedDocument = asyncapiDocument;
-    } else {
+    if (base64Regex.test(asyncapiDocument)) {
         decodedDocument  = Buffer.from(asyncapiDocument, "base64").toString("utf-8");
+    } else {
+        decodedDocument  = asyncapiDocument;
     }
 
     const { document, diagnostics } = await parser.parse(decodedDocument);
