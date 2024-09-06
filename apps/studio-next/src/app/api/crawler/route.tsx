@@ -74,7 +74,7 @@ export async function GET(request: NextRequest) {
       ogImageParams.append('numMessages', info.numMessages.toString());
     }
 
-    const ogImageurl = `https://ogp-studio.vercel.app/api/og?${ogImageParams.toString()}`;
+    const ogImageurl = `https://ogp-studio.netlify.app/og?${ogImageParams.toString()}`;
 
     const crawlerInfo = `
       <!DOCTYPE html>
