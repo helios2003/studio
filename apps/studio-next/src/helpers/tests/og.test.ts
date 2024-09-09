@@ -1,3 +1,7 @@
+/**
+ * @jest-environment node
+ */
+
 import { fetchOpenGraphTags } from './fetchogtags';
 
 // list of sample crawlers to test with
